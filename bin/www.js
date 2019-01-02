@@ -1,7 +1,8 @@
 'use strict'
-// This will be our application entry. We'll setup our server here.
+//Application entry.
 const http = require('http');
-const app = require('../app'); // The express app we just created
+//import express app
+const app = require('../app'); 
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 app.set('port', port);
