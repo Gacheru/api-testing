@@ -1,12 +1,12 @@
-'use strict';
+'use strict'
 
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'test';
 const config = require(__dirname + '/../config/config')[env];
-const db = {};
+const dbTest = {};
 
 let sequelize;
 if (config.use_env_variable) {
@@ -23,16 +23,16 @@ fs
     (file.slice(-3) === '.js'))
   .forEach(file => {
     const model = sequelize.import(path.join(__dirname, file));
-    db[model.name] = model;
+    dbTest[model.name] = model;
   });
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+Object.keys(dbTest).forEach(modelName => {
+  if (dbTest[modelName].associate) {
+    dbTest[modelName].associate(dbTest);
   }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+dbTest.sequelize = sequelize;
+dbTest.Sequelize = Sequelize;
 
-module.exports = db;
+module.exports = dbTest;
