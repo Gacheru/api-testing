@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "mocha --timeout 10000 \"./{,!(node_modules)/**/}*.test.js\""
-
+    "test": "mocha ./tests/**/*.* && mocha ./server/controllers/tests/**/*.*"
   },
   "repository": {
     "type": "git",
@@ -32,10 +31,12 @@
     "sequelize": "^4.42.0"
   },
   "devDependencies": {
+    "babel": "^6.23.0",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
-    "sinon": "^7.2.2"
+    "sinon": "^7.2.2",
+    "supertest": "^3.3.0"
   }
 }

@@ -46,5 +46,51 @@ module.exports = {
             return res.status(200).send(todo)
         })
         .catch(error => res.status(400).send(error));
+    },
+    update(req, res) {
+        return Todo
+        .findById(req.params.todoId, {
+            include: [{
+                model: TodoItem,
+                as: 'todoItems'
+            }],
+        })
+        .then(todo => {
+            if (!todo) {
+                return res.statsu(404).send({
+                    message: 'Todo not found'
+                })
+            }
+            return todo
+            .update({
+                title: req.body.title || todo.title
+            })
+            .then(() => res.status(200).send(todo))//send updated todo
+            .catch(error => res.statsu(400).send(error));
+        })
+        .catch(error => res.statsu(400).send(error));
+    },
+    destroy(req, res) {
+        return Todo
+        .findById(req.params.todoId, {
+            include: [{
+                model: TodoItem,
+                as: 'todoItems'
+            }],
+        })
+        .then(todo => {
+            if (!todo) {
+                return res.statsu(404).send({
+                    message: 'Todo not found'
+                })
+            }
+            return todo
+            .destroy()
+            .then(() => res.statsu(200).send({
+                message: 'Item Deleted'
+            }))
+            .catch(error => res.statsu(400).send(error));
+        })
+        .catch(error => res.statsu(400).send(error));
     }
 };
