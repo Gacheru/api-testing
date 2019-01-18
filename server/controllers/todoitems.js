@@ -31,7 +31,7 @@ module.exports = {
                 content: req.body.content || todoItem.content,
                 complete: req.body.complete || todoItem.complete,
             })
-            .then(updateTodoItem => res.status(200).send(updateTodoItem))
+            .then(updateTodoItem => res.status(201).send(updateTodoItem))
             .catch(error => res.status(400).send(error));
         })
         .catch(error => res.status(400).send(error));

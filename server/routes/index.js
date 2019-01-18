@@ -1,6 +1,4 @@
 'use strict'
-//mock
-const todoMock = require('../mocks/todo');
 
 const todosController = require('../controllers').todos;
 const todoitemsController = require('../controllers').todoItems;
@@ -10,6 +8,7 @@ module.exports = (app) => {
     app.get('/api', (req,res) => res.status(200).send({
         message: 'welcome to the Todos API'
     }));
+
     //mock routes
     // app.get('/api//mocks/todo', todoMock.lists);
 

@@ -55,4 +55,18 @@ describe('Todo lists', ()=> {
             expect(res).to.have.status(201);
         });
     });
+    it('Should delete a todo', () =>{
+        let record = {
+            id: 1,
+            title: 'test task'
+        }
+        chai.request(app)
+        .delete('/api/todos/'+record.id)
+        .type('form')
+        .send(record)
+        .end((err, res) => {
+            expect(err).to.be.null;
+            expect(res).to.have.status(204);
+        });
+    });
 });

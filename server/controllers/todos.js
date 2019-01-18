@@ -31,7 +31,7 @@ module.exports = {
     },
     retrieve(req, res) {
         return Todo
-        .findById(req.params.todoId, {
+        .findByPk(req.params.todoId, {
             include: [{
                 model: TodoItem,
                 as: 'todoItems'
@@ -49,7 +49,7 @@ module.exports = {
     },
     update(req, res) {
         return Todo
-        .findById(req.params.todoId, {
+        .findByPk(req.params.todoId, {
             include: [{
                 model: TodoItem,
                 as: 'todoItems'
@@ -65,14 +65,14 @@ module.exports = {
             .update({
                 title: req.body.title || todo.title
             })
-            .then(() => res.status(200).send(todo))//send updated todo
+            .then(() => res.status(201).send(todo))//send updated todo
             .catch(error => res.statsu(400).send(error));
         })
         .catch(error => res.statsu(400).send(error));
     },
     destroy(req, res) {
         return Todo
-        .findById(req.params.todoId, {
+        .findByPk(req.params.todoId, {
             include: [{
                 model: TodoItem,
                 as: 'todoItems'
@@ -86,8 +86,8 @@ module.exports = {
             }
             return todo
             .destroy()
-            .then(() => res.statsu(200).send({
-                message: 'Item Deleted'
+            .then(() => res.statsu(204).send({
+                message: 'Deleted todo successfuly'
             }))
             .catch(error => res.statsu(400).send(error));
         })
